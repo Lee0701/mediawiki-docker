@@ -1,4 +1,4 @@
-FROM php:8.1-apache
+FROM php:8.1-apache-bookworm
 
 # System dependencies
 RUN set -eux; \
@@ -22,6 +22,8 @@ RUN set -eux; \
 	apt-get install -y --no-install-recommends \
 		libicu-dev \
 		libonig-dev \
+		libldb-dev \
+		libldap2-dev \
 	; \
 	\
 	docker-php-ext-install -j "$(nproc)" \
@@ -30,6 +32,7 @@ RUN set -eux; \
 		mbstring \
 		mysqli \
 		opcache \
+		ldap \
 	; \
 	\
 	pecl install APCu-5.1.21; \
