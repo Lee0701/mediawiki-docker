@@ -24,12 +24,21 @@ RUN set -eux; \
 		libonig-dev \
 	; \
 	\
+	apt-get update; \
+	apt-get install -y --no-install-recommends \
+		libicu-dev \
+		libonig-dev \
+		libldb-dev \
+		libldap2-dev \
+	; \
+	\
 	docker-php-ext-install -j "$(nproc)" \
 		calendar \
 		intl \
 		mbstring \
 		mysqli \
 		opcache \
+		ldap \
 	; \
 	\
 	pecl install APCu-5.1.21; \
